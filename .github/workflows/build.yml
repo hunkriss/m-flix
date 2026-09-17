@@ -26,9 +26,10 @@ jobs:
           gradle-version: '8.2'
 
       - name: Install Android SDK components
-        run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+  run: |
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+    yes | sdkmanager --licenses > /dev/null || true
+    sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Build MFLIX TV
         run: gradle assembleDebug
